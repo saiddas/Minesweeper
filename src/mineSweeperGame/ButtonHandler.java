@@ -34,9 +34,6 @@ class ButtonHandler implements ActionListener  {
 	public void actionPerformed(ActionEvent event) {
 		if (clickSource == 0) {
 			if(grid.isMINE(row, col)) {
-////				JOptionPane.showMessageDialog(null, "OOOPS!!");
-//				JButton button = (JButton) event.getSource();
-//				button.setIcon(new ImageIcon("src/iconSource/thatMine.jpg"));
 				openMines();
 			}
 			else {
@@ -47,9 +44,6 @@ class ButtonHandler implements ActionListener  {
 					else {
 						openButton();
 					}
-//					JButton button = (JButton) event.getSource();
-//					button.setBorder(null);
-//					button.setIcon(panel.getIconAt(grid.getCellContent(row, col)));
 				}
 			}
 		} 
@@ -77,7 +71,10 @@ class ButtonHandler implements ActionListener  {
 	}
 
 	private void openButton() {
-		panel.getButtons()[row][col].setIcon(panel.getIconAt(grid.getCellContent(row, col)));
+		if (!grid.isOpened(row, col)) {
+			panel.getButtons()[row][col].setIcon(panel.getIconAt(grid.getCellContent(row, col)));
+			grid.openCell(row, col);
+		}
 	}
 
 	private void openMines() {
@@ -87,9 +84,21 @@ class ButtonHandler implements ActionListener  {
 		
 		for (int i = 0; i < grid.getMineInformation().length; i++) {
 			for (int j = 0; j < grid.getMineInformation()[0].length; j++) {
+				panel.getButtons()[i][j].setEnabled(false);
 				if (grid.isMINE(i, j) && !( i==firstMineX  && j==firstMineY  )) {
-					panel.getButtons()[i][j].setEnabled(false);
 					panel.getButtons()[i][j].setDisabledIcon(new ImageIcon("src/iconSource/otherMine.jpg"));
+				}
+				else if ( i==firstMineX && j == firstMineY ) {
+					panel.getButtons()[i][j].setDisabledIcon(new ImageIcon("src/iconSource/thatMine.jpg"));
+				}
+				else if (grid.isOpened(i, j)) {
+					panel.getButtons()[i][j].setDisabledIcon(panel.getIconAt(grid.getCellContent(i, j)-grid.OPENED));
+				}
+				else if (grid.isFlagged(i, j)) {
+					panel.getButtons()[i][j].setDisabledIcon(panel.getIconAt(grid.getCellContent(i, j)-grid.FLAGGED));
+				}
+				else {
+					panel.getButtons()[i][j].setDisabledIcon(panel.getIconAt(9));
 				}
 			}
 		}
@@ -97,7 +106,6 @@ class ButtonHandler implements ActionListener  {
 	}
 
 	private void openFirstMine() {
-		panel.getButtons()[row][col].setIcon(new ImageIcon("src/iconSource/thatMine.jpg"));
 		firstMineX = row;
 		firstMineY = col;
 		firstMine = false;

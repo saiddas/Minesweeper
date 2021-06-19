@@ -5,8 +5,8 @@ import java.util.Random;
 class MineGrid {
 	private int[][] mineInformation;
 	private static final int MINE = -1;
-	private static final int FLAGGED = -10;
-	private static final int OPENED = 10;
+	final int FLAGGED = -10;
+	final int OPENED = 10;
 	//If a button is opened or flagged it's cell content will be updated with adding these variables.
 	//This way I can save the memory!
 	
