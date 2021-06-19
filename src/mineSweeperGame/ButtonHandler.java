@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.border.BevelBorder;
 
 class ButtonHandler implements ActionListener  {
 	private int row, col;
@@ -39,7 +40,9 @@ class ButtonHandler implements ActionListener  {
 			else {
 				if (event.getSource() instanceof JButton) {
 					JButton button = (JButton) event.getSource();
-					button.setText(String.valueOf(grid.getCellContent(row, col)));
+					//button.setText(String.valueOf(grid.getCellContent(row, col)));
+					button.setBorder(null);
+					button.setIcon(panel.getIconAt(grid.getCellContent(row, col)));
 				}
 			}
 		} 
