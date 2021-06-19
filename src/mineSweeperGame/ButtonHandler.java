@@ -1,14 +1,12 @@
 package mineSweeperGame;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
-import javax.swing.border.BevelBorder;
 
-class ButtonHandler implements ActionListener  {
+class ButtonHandler extends MouseAdapter  {
 	private int row, col;
 	private MineGrid grid;
 	private int clickSource;
@@ -31,21 +29,27 @@ class ButtonHandler implements ActionListener  {
 		this.clickSource = i;
 	}
 
-	public void actionPerformed(ActionEvent event) {
+	@Override
+	public void mousePressed(MouseEvent event) {
 		if (clickSource == 0) {
-			if(grid.isMINE(row, col)) {
-				openMines();
-			}
-			else {
-				if (event.getSource() instanceof JButton) {
-					if (grid.getCellContent(row, col) == 0) {
-						openZeroes();
-					}
-					else {
-						openButton();
+			if (event.getButton() == MouseEvent.BUTTON1)  {
+				if(grid.isMINE(row, col)) {
+					openMines();
+				}
+				else {
+					if (event.getSource() instanceof JButton) {
+						if (grid.getCellContent(row, col) == 0) {
+							openZeroes();
+						}
+						else {
+							openButton();
+						}
 					}
 				}
 			}
+			else if (event.getButton() == MouseEvent.BUTTON3) {
+				flagButton();
+			} 
 		} 
 		
 		//HERE IS FOR WHEN THE SMILEY IS CLICKED
