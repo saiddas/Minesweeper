@@ -5,8 +5,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 public class MenuGUI extends JMenuBar{
-	JMenu game;
-	JMenu help;
+	private JMenu game;
+	private JMenu help;
 	
 	public MenuGUI() {
 		super();
