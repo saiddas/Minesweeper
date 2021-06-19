@@ -10,9 +10,10 @@ import javax.swing.border.BevelBorder;
 public class MineSweeper {
 	private static final int NUM_MINES = 100;
 	private static final int SIZE = 20;
+	public static JFrame frame;
 	
 	public static void main(String[] args) {
-		 JFrame frame = new JFrame("Mine Sweeper | # of mines: " + NUM_MINES);
+		 frame = new JFrame("Mine Sweeper | # of mines: " + NUM_MINES);
 		 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		 
 		 MenuGUI menu = new MenuGUI();
@@ -37,7 +38,7 @@ public class MineSweeper {
 		 //Frame arrangements.
 		 frame.setJMenuBar(menu);
 		 frame.add(backgroundPanel);
-		 backgroundPanel.setBounds(5, 5, 620, 690);
+		 backgroundPanel.setBounds(0, 0, 625, 695);
 		 
 		 //Background Colors
 		 frame.setBackground(Color.LIGHT_GRAY);
@@ -45,7 +46,7 @@ public class MineSweeper {
 		 mainPanel.setBackground(Color.LIGHT_GRAY);
 		 topPanel.setBackground(Color.LIGHT_GRAY); 
 		 
-		 frame.setSize(645, 760);
+		 frame.setSize(635, 750);
 		 frame.setResizable(false);
 		 frame.setVisible(true);
 	}

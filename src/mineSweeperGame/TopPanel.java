@@ -11,11 +11,13 @@ public class TopPanel extends JPanel {
 	private JButton smiley;
 	
 	public TopPanel() {
+		//Smiley Setup
 		smiley = new JButton(new ImageIcon("src/iconSource/happy.jpg"));
 		smiley.setPressedIcon(new ImageIcon("src/iconSource/happyPressed.jpg"));
 		setLayout(null);
 		add(smiley);
 		smiley.setBounds(260, 10, 40, 40);
+		smiley.addActionListener(new ButtonHandler(1));
 		
 	}
 }
