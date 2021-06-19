@@ -91,7 +91,7 @@ class MineGrid {
 		mineInformation[i][j] += FLAGGED;
 	}
 	
-	void unflaggCell(int i, int j) {
+	void unflagCell(int i, int j) {
 		mineInformation[i][j] -= FLAGGED;
 	}
 	

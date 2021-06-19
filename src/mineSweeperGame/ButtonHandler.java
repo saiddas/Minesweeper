@@ -71,8 +71,16 @@ class ButtonHandler extends MouseAdapter  {
 	}
 
 	private void flagButton() {
-		// TODO Auto-generated method stub
-		
+		if (!grid.isOpened(row, col)) {
+			if (!grid.isFlagged(row, col)) {
+				panel.getButtons()[row][col].setIcon(panel.getIconAt(10));
+				grid.flagCell(row, col);
+			}
+			else {
+				panel.getButtons()[row][col].setIcon(panel.getIconAt(9));
+				grid.unflagCell(row, col);
+			}
+		}
 	}
 
 	private void openZeroes() {
@@ -80,7 +88,7 @@ class ButtonHandler extends MouseAdapter  {
 	}
 
 	private void openButton() {
-		if (!grid.isOpened(row, col)) {
+		if (!grid.isOpened(row, col) && !grid.isFlagged(row, col)) {
 			panel.getButtons()[row][col].setIcon(panel.getIconAt(grid.getCellContent(row, col)));
 			grid.openCell(row, col);
 		}

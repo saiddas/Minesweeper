@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 class MineSweeperGUI extends JPanel {
 	private MineGrid grid;
 	private JButton[][] buttons;
-	final Icon[] ICONS = new ImageIcon[10];
+	final Icon[] ICONS = new ImageIcon[11];
 	
 	public MineSweeperGUI(int numRows, int numCols, int numMines) {
 		
@@ -57,5 +57,6 @@ class MineSweeperGUI extends JPanel {
 		ICONS[7] = new ImageIcon("src/iconSource/seven.jpg");
 		ICONS[8] = new ImageIcon("src/iconSource/eight.jpg");
 		ICONS[9] = new ImageIcon("src/iconSource/unopened.jpg");
+		ICONS[10] = new ImageIcon("src/iconSource/flag.jpg");
 	}
 }
