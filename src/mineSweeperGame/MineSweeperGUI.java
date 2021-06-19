@@ -36,6 +36,8 @@ class MineSweeperGUI extends JPanel {
 		return this.buttons;
 	}
 	
+	
+	//ICONS
 	Icon getIconAt(int i) {
 		return ICONS[i];
 	}

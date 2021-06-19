@@ -12,6 +12,8 @@ class ButtonHandler implements ActionListener  {
 	private int row, col;
 	private MineGrid grid;
 	private int clickSource;
+	private static int firstMineX , firstMineY;
+	private static boolean firstMine = true;
 	private MineSweeperGUI panel;
 	// If click's source is a normal cell clickSource will remain 0
 	// for smiley it's 1, for 'new easy game' it's 2, for 'new normal game' it's 3, for 'new hard game' it's 4, for 'game help' it's 5, for 'code help' it's 6.
@@ -32,17 +34,22 @@ class ButtonHandler implements ActionListener  {
 	public void actionPerformed(ActionEvent event) {
 		if (clickSource == 0) {
 			if(grid.isMINE(row, col)) {
-				JOptionPane.showMessageDialog(null, "OOOPS!!");
-				JButton button = (JButton) event.getSource();
-				button.setIcon(new ImageIcon("src/iconSource/thatMine.jpg"));
+////				JOptionPane.showMessageDialog(null, "OOOPS!!");
+//				JButton button = (JButton) event.getSource();
+//				button.setIcon(new ImageIcon("src/iconSource/thatMine.jpg"));
 				openMines();
 			}
 			else {
 				if (event.getSource() instanceof JButton) {
-					JButton button = (JButton) event.getSource();
-					//button.setText(String.valueOf(grid.getCellContent(row, col)));
-					button.setBorder(null);
-					button.setIcon(panel.getIconAt(grid.getCellContent(row, col)));
+					if (grid.getCellContent(row, col) == 0) {
+						openZeroes();
+					}
+					else {
+						openButton();
+					}
+//					JButton button = (JButton) event.getSource();
+//					button.setBorder(null);
+//					button.setIcon(panel.getIconAt(grid.getCellContent(row, col)));
 				}
 			}
 		} 
@@ -65,8 +72,34 @@ class ButtonHandler implements ActionListener  {
 		}
 	}
 
+	private void openZeroes() {
+		openButton();
+	}
+
+	private void openButton() {
+		panel.getButtons()[row][col].setIcon(panel.getIconAt(grid.getCellContent(row, col)));
+	}
+
 	private void openMines() {
-		// TODO Auto-generated method stub
+		if (firstMine) {
+			openFirstMine();
+		}
 		
+		for (int i = 0; i < grid.getMineInformation().length; i++) {
+			for (int j = 0; j < grid.getMineInformation()[0].length; j++) {
+				if (grid.isMINE(i, j) && !( i==firstMineX  && j==firstMineY  )) {
+					panel.getButtons()[i][j].setEnabled(false);
+					panel.getButtons()[i][j].setDisabledIcon(new ImageIcon("src/iconSource/otherMine.jpg"));
+				}
+			}
+		}
+		
+	}
+
+	private void openFirstMine() {
+		panel.getButtons()[row][col].setIcon(new ImageIcon("src/iconSource/thatMine.jpg"));
+		firstMineX = row;
+		firstMineY = col;
+		firstMine = false;
 	}
 }
