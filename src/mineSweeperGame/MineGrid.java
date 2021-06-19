@@ -99,6 +99,10 @@ class MineGrid {
 		return getCellContent(i, j) > 8;
 	}
 	
+	boolean isTrueFlagged(int i, int j) {
+		return (getCellContent(i, j)-FLAGGED == MINE);
+	}
+	
 	boolean isFlagged(int i, int j) {
 		return getCellContent(i, j) < MINE;
 	}

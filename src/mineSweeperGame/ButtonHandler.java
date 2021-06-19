@@ -111,8 +111,11 @@ class ButtonHandler extends MouseAdapter  {
 				else if (grid.isOpened(i, j)) {
 					panel.getButtons()[i][j].setDisabledIcon(panel.getIconAt(grid.getCellContent(i, j)-grid.OPENED));
 				}
-				else if (grid.isFlagged(i, j)) {
-					panel.getButtons()[i][j].setDisabledIcon(panel.getIconAt(grid.getCellContent(i, j)-grid.FLAGGED));
+				else if (grid.isFlagged(i, j) && grid.isTrueFlagged(i, j)) {
+					panel.getButtons()[i][j].setDisabledIcon(panel.getIconAt(10));
+				}
+				else if (grid.isFlagged(i, j) && !grid.isTrueFlagged(i, j)) {
+					panel.getButtons()[i][j].setDisabledIcon(panel.getIconAt(13));
 				}
 				else {
 					panel.getButtons()[i][j].setDisabledIcon(panel.getIconAt(9));
