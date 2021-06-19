@@ -17,7 +17,7 @@ public class TopPanel extends JPanel {
 		setLayout(null);
 		add(smiley);
 		smiley.setBounds(260, 10, 40, 40);
-		smiley.addActionListener(new ButtonHandler(1));
+		smiley.addMouseListener(new ButtonHandler(1));
 		
 	}
 }

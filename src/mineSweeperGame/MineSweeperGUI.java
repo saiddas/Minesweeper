@@ -27,7 +27,7 @@ class MineSweeperGUI extends JPanel {
 				buttons[i][j] = button;
 				button.setBackground(Color.LIGHT_GRAY);
 				button.setIcon(getIconAt(9));
-				button.addActionListener(new ButtonHandler(i, j, grid, this));
+				button.addMouseListener(new ButtonHandler(i, j, grid, this));
 			}
 		}
 	}

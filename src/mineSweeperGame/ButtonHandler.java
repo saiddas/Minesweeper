@@ -70,6 +70,11 @@ class ButtonHandler extends MouseAdapter  {
 		}
 	}
 
+	private void flagButton() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	private void openZeroes() {
 		openButton();
 	}

@@ -30,10 +30,10 @@ public class MenuGUI extends JMenuBar{
 		add(game);
 		add(help);
 		
-		easy.addActionListener(new ButtonHandler(2));
-		normal.addActionListener(new ButtonHandler(3));
-		hard.addActionListener(new ButtonHandler(4));
-		gameHelp.addActionListener(new ButtonHandler(5));
-		codeHelp.addActionListener(new ButtonHandler(6));
+		easy.addMouseListener(new ButtonHandler(2));
+		normal.addMouseListener(new ButtonHandler(3));
+		hard.addMouseListener(new ButtonHandler(4));
+		gameHelp.addMouseListener(new ButtonHandler(5));
+		codeHelp.addMouseListener(new ButtonHandler(6));
 	}
 }
