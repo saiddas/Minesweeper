@@ -17,7 +17,7 @@ public class MineSweeper {
 		 
 		 MenuGUI menu = new MenuGUI();
 		 JPanel backgroundPanel = new JPanel();
-		 JPanel topPanel = new JPanel();
+		 TopPanel topPanel = new TopPanel();
 		 MineSweeperGUI mainPanel =new MineSweeperGUI(SIZE, SIZE, NUM_MINES);
 		
 		 //Absolute Layouts and backGroundPanel's arrangements.
@@ -25,8 +25,8 @@ public class MineSweeper {
 		 backgroundPanel.setLayout(null);
 		 backgroundPanel.add(topPanel);
 		 backgroundPanel.add(mainPanel);
-		 topPanel.setBounds(10, 10, 550, 30);
-		 mainPanel.setBounds(10, 50, 550, 550);
+		 topPanel.setBounds(10, 10, 600, 60);
+		 mainPanel.setBounds(10, 80, 600, 600);
 		 
 		 //Visual Work.
 		 topPanel.add(new JLabel("Label")); // This is for noticing the place of the panel. I'll delete this later.
@@ -37,7 +37,7 @@ public class MineSweeper {
 		 //Frame arrangements.
 		 frame.setJMenuBar(menu);
 		 frame.add(backgroundPanel);
-		 backgroundPanel.setBounds(5, 5, 570, 610);
+		 backgroundPanel.setBounds(5, 5, 620, 690);
 		 
 		 //Background Colors
 		 frame.setBackground(Color.LIGHT_GRAY);
@@ -45,7 +45,7 @@ public class MineSweeper {
 		 mainPanel.setBackground(Color.LIGHT_GRAY);
 		 topPanel.setBackground(Color.LIGHT_GRAY); 
 		 
-		 frame.setSize(600, 685);
+		 frame.setSize(645, 760);
 		 frame.setResizable(false);
 		 frame.setVisible(true);
 	}
