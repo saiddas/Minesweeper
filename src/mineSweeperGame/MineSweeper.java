@@ -5,7 +5,7 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
 
 public class MineSweeper {
 	private static final int NUM_MINES = 100;
@@ -20,6 +20,7 @@ public class MineSweeper {
 		 JPanel topPanel = new JPanel();
 		 MineSweeperGUI mainPanel =new MineSweeperGUI(SIZE, SIZE, NUM_MINES);
 		
+		 //Absolute Layouts and backGroundPanel's arrangements.
 		 frame.setLayout(null);
 		 backgroundPanel.setLayout(null);
 		 backgroundPanel.add(topPanel);
@@ -29,13 +30,20 @@ public class MineSweeper {
 		 
 		 //Visual Work.
 		 topPanel.add(new JLabel("Label")); // This is for noticing the place of the panel. I'll delete this later.
-		 backgroundPanel.setBorder(new SoftBevelBorder(SoftBevelBorder.RAISED));
-		 topPanel.setBorder(new SoftBevelBorder(SoftBevelBorder.LOWERED));
-		 mainPanel.setBorder(new SoftBevelBorder(SoftBevelBorder.LOWERED));
+		 backgroundPanel.setBorder(new BevelBorder(BevelBorder.RAISED));
+		 topPanel.setBorder(new BevelBorder(BevelBorder.LOWERED));
+		 mainPanel.setBorder(new BevelBorder(BevelBorder.LOWERED));
 		 
+		 //Frame arrangements.
 		 frame.setJMenuBar(menu);
 		 frame.add(backgroundPanel);
 		 backgroundPanel.setBounds(5, 5, 570, 610);
+		 
+		 //Background Colors
+		 frame.setBackground(Color.LIGHT_GRAY);
+		 backgroundPanel.setBackground(Color.LIGHT_GRAY);
+		 mainPanel.setBackground(Color.LIGHT_GRAY);
+		 topPanel.setBackground(Color.LIGHT_GRAY); 
 		 
 		 frame.setSize(600, 685);
 		 frame.setResizable(false);
