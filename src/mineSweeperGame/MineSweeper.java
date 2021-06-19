@@ -1,8 +1,11 @@
 package mineSweeperGame;
 
+import java.awt.Color;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.SoftBevelBorder;
 
 public class MineSweeper {
 	private static final int NUM_MINES = 100;
@@ -17,17 +20,25 @@ public class MineSweeper {
 		 JPanel topPanel = new JPanel();
 		 MineSweeperGUI mainPanel =new MineSweeperGUI(SIZE, SIZE, NUM_MINES);
 		
+		 frame.setLayout(null);
 		 backgroundPanel.setLayout(null);
 		 backgroundPanel.add(topPanel);
 		 backgroundPanel.add(mainPanel);
-		 topPanel.setBounds(10, 10, 500, 30);
-		 mainPanel.setBounds(10, 50, 500, 500);
-		 topPanel.add(new JLabel("Label"));
+		 topPanel.setBounds(10, 10, 550, 30);
+		 mainPanel.setBounds(10, 50, 550, 550);
+		 
+		 //Visual Work.
+		 topPanel.add(new JLabel("Label")); // This is for noticing the place of the panel. I'll delete this later.
+		 backgroundPanel.setBorder(new SoftBevelBorder(SoftBevelBorder.RAISED));
+		 topPanel.setBorder(new SoftBevelBorder(SoftBevelBorder.LOWERED));
+		 mainPanel.setBorder(new SoftBevelBorder(SoftBevelBorder.LOWERED));
 		 
 		 frame.setJMenuBar(menu);
 		 frame.add(backgroundPanel);
+		 backgroundPanel.setBounds(5, 5, 570, 610);
 		 
-		 frame.setSize(1000, 600);
+		 frame.setSize(600, 685);
+		 frame.setResizable(false);
 		 frame.setVisible(true);
 	}
 }
