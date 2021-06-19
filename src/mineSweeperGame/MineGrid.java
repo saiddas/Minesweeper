@@ -70,6 +70,10 @@ class MineGrid {
 			}
 		}
 	}
+	
+	int[][] getMineInformation() {
+		return this.mineInformation;
+	}
 
 	int getCellContent(int row, int col) {
 		return mineInformation[row][col];
