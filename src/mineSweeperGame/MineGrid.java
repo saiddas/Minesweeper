@@ -4,6 +4,7 @@ import java.util.Random;
 
 class MineGrid {
 	private int[][] mineInformation;
+	private int flaggedCellCount, trueFlaggedCellCount, mineCount;
 	private static final int MINE = -1;
 	final int FLAGGED = -10;
 	final int OPENED = 10;
@@ -15,6 +16,7 @@ class MineGrid {
 		initializeCells();
 		placeMines(numMines);
 		setMineInformation();
+		mineCount = numMines;
 	}
 	
 	boolean isInsideGrid(int i, int j) {
@@ -88,11 +90,19 @@ class MineGrid {
 	}
 	
 	void flagCell(int i, int j) {
+		if(isMINE(i, j)) {
+			trueFlaggedCellCount++;
+		}
 		mineInformation[i][j] += FLAGGED;
+		flaggedCellCount++;
 	}
 	
 	void unflagCell(int i, int j) {
 		mineInformation[i][j] -= FLAGGED;
+		if (isMINE(i, j)) {
+			trueFlaggedCellCount--;
+		}
+		flaggedCellCount--;
 	}
 	
 	boolean isOpened(int i, int j) {
@@ -105,5 +115,17 @@ class MineGrid {
 	
 	boolean isFlagged(int i, int j) {
 		return getCellContent(i, j) < MINE;
+	}
+
+	int getFlaggedCellCount() {
+		return flaggedCellCount;
+	}
+	
+	int getTrueFlaggedCellCount() {
+		return trueFlaggedCellCount;
+	}
+
+	int getMineCount() {
+		return this.mineCount;
 	}
 }

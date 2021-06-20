@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 class ButtonHandler extends MouseAdapter  {
 	private int row, col;
@@ -75,11 +76,18 @@ class ButtonHandler extends MouseAdapter  {
 			if (!grid.isFlagged(row, col)) {
 				panel.getButtons()[row][col].setIcon(panel.getIconAt(10));
 				grid.flagCell(row, col);
+				checkWinStatus();
 			}
 			else {
 				panel.getButtons()[row][col].setIcon(panel.getIconAt(9));
 				grid.unflagCell(row, col);
 			}
+		}
+	}
+
+	private void checkWinStatus() {
+		if (grid.getTrueFlaggedCellCount() == grid.getMineCount()) {
+			JOptionPane.showMessageDialog(null, "You're a genius.");
 		}
 	}
 
