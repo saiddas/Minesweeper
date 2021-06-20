@@ -56,12 +56,23 @@ class ButtonHandler extends MouseAdapter  {
 		
 		//HERE IS FOR WHEN THE SMILEY IS CLICKED
 		else if (clickSource == 1) {
-			
+			int newGameMines = grid.getMineCount();
+//			newGame(newGameMines);
 		}
 	
 		//HERE IS FOR WHEN THE MENU --> NEW GAME  IS CLICKED
 		else if (clickSource > 1 && clickSource < 5) {
-			
+			int newGameMines;
+			if (clickSource == 2) {
+				newGameMines = 20;
+			}
+			else if (clickSource == 3) {
+				newGameMines =50; 
+			}
+			else {
+				newGameMines = 100;
+			}
+//			newGame(newGameMines);
 		}
 		//HERE IS FOR WHEN THE MENU --> HELP IS CLICKED
 		else if (clickSource == 5 || clickSource == 6) {
