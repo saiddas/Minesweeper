@@ -7,13 +7,15 @@ import javax.swing.border.BevelBorder;
 
 public class TopPanel extends JPanel {
 	private Chronometer chronometer;
-	private MineCounter mineCounter;
+	private static MineCounter mineCounter;
 	private static JButton smiley;
 	
 	public TopPanel() {
 
 		setLayout(null);
 		smiley = new JButton();
+		chronometer = new Chronometer();
+		mineCounter = new MineCounter();
 		
 		//Smiley Setup
 		setHappyFace();
@@ -22,12 +24,10 @@ public class TopPanel extends JPanel {
 		smiley.addMouseListener(new ButtonHandler(1));
 		
 		//Chronometer Setup
-		chronometer = new Chronometer();
 		add(chronometer);
 		chronometer.setBounds(10, 10, 63, 40);
 		
 		//MineCounter Setup
-		mineCounter = new MineCounter();
 		add(mineCounter);
 		mineCounter.setBounds(525, 10, 63, 40);
 		

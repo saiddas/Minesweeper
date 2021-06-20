@@ -95,6 +95,8 @@ class MineGrid {
 		}
 		mineInformation[i][j] += FLAGGED;
 		flaggedCellCount++;
+	
+		MineCounter.setCount(mineCount-flaggedCellCount);
 	}
 	
 	void unflagCell(int i, int j) {
@@ -103,6 +105,8 @@ class MineGrid {
 			trueFlaggedCellCount--;
 		}
 		flaggedCellCount--;
+		
+		MineCounter.setCount(mineCount-flaggedCellCount);
 	}
 	
 	boolean isOpened(int i, int j) {

@@ -12,7 +12,7 @@ import javax.swing.JTextField;
 
 public class MineCounter extends JLabel {
 	private Font font;
-	private JTextField textField;
+	private static JTextField textField;
 	
 	public MineCounter() {
 		try {	
@@ -28,7 +28,7 @@ public class MineCounter extends JLabel {
 		setBackground(Color.BLACK);
 		setOpaque(true);
 		
-		String substr = String.format("%3d", 1000+MineSweeper.getNUM_MINES()).substring(1, 4);
+		String substr = String.format("%3d", 1000+MineSweeper.getNUM_MINES()).substring(1, 4); //I add 1000 to get zeroes in a two digit count.
 		textField = new JTextField(substr);
 		textField.setFocusable(false);
 		textField.setOpaque(false);
@@ -38,5 +38,14 @@ public class MineCounter extends JLabel {
 
 		add(textField);
 		textField.setBounds(2, 4, 75, 40);
+	}
+	
+	public static void setCount(int i) {
+		if (i >= 0) {
+			textField.setText(String.valueOf(1000+i).substring(1, 4));
+		}
+		else if (i < 0 && i > -99) {
+			textField.setText(String.valueOf(i));
+		}
 	}
 }
