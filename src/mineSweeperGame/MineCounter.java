@@ -44,7 +44,7 @@ public class MineCounter extends JLabel {
 		if (i >= 0) {
 			textField.setText(String.valueOf(1000+i).substring(1, 4));
 		}
-		else if (i < 0 && i > -99) {
+		else if (i < 0 && i >= -99) {
 			textField.setText(String.valueOf(i));
 		}
 	}
