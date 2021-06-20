@@ -39,7 +39,7 @@ class ButtonHandler extends MouseAdapter  {
 				else {
 					if (event.getSource() instanceof JButton) {
 						if (grid.getCellContent(row, col) == 0) {
-							openZeroes();
+							openZeroes(row, col);
 						}
 						else {
 							openButton();
@@ -83,14 +83,31 @@ class ButtonHandler extends MouseAdapter  {
 		}
 	}
 
-	private void openZeroes() {
-		openButton();
+	private void openZeroes(int r, int c) {
+		openButton(r, c);
+		for (int i = -1; i < 2; i++) {
+			for (int j = -1; j < 2; j++) {
+				if (!(i == 0 && j == 0) && grid.isInsideGrid(r+i, c+j)) {
+					if (grid.getCellContent(r+i, c+j) == 0) {
+						openZeroes(r+i, c+j);
+					}
+					openButton(r+i, c+j);
+				}
+			}
+		}
 	}
 
 	private void openButton() {
 		if (!grid.isOpened(row, col) && !grid.isFlagged(row, col)) {
 			panel.getButtons()[row][col].setIcon(panel.getIconAt(grid.getCellContent(row, col)));
 			grid.openCell(row, col);
+		}
+	}
+	
+	private void openButton(int r, int c) {
+		if (!grid.isOpened(r, c) && !grid.isFlagged(r, c)) {
+			panel.getButtons()[r][c].setIcon(panel.getIconAt(grid.getCellContent(r, c)));
+			grid.openCell(r, c);
 		}
 	}
 
@@ -122,7 +139,6 @@ class ButtonHandler extends MouseAdapter  {
 				}
 			}
 		}
-		
 	}
 
 	private void openFirstMine() {

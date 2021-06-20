@@ -17,7 +17,7 @@ class MineGrid {
 		setMineInformation();
 	}
 	
-	private boolean isInsideGrid(int i, int j) {
+	boolean isInsideGrid(int i, int j) {
 		return (i >= 0 && i < mineInformation.length) && (j >= 0 && j < mineInformation[0].length);
 	}
 	
