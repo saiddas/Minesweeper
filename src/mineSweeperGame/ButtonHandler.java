@@ -100,7 +100,8 @@ class ButtonHandler extends MouseAdapter  {
 	}
 	
 	private void newGame(int difficulty) {
-		System.out.println("NewGame has been created");
+		lost = false;
+		won = false;
 		MineSweeper.startGame(difficulty);
 	}
 

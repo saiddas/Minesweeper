@@ -46,7 +46,6 @@ public class MineSweeper {
 		if (oldBackgroundPanel != null) { 
 			frame.remove(oldBackgroundPanel);
 		}
-//		frame.validate();
 		
 		 MenuGUI menu = new MenuGUI();
 		 JPanel backgroundPanel = new JPanel();
@@ -75,7 +74,7 @@ public class MineSweeper {
 		 frame.setBackground(Color.LIGHT_GRAY);
 		 backgroundPanel.setBackground(Color.LIGHT_GRAY);
 		 mainPanel.setBackground(Color.LIGHT_GRAY);
-		 topPanel.setBackground(Color.LIGHT_GRAY); 
+		 topPanel.setBackground(Color.LIGHT_GRAY);
 		 
 		 oldBackgroundPanel = backgroundPanel;
 		 
