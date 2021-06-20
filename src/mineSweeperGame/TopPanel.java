@@ -35,6 +35,7 @@ public class TopPanel extends JPanel {
 	
 	public static void setLostFace() {
 		smiley.setIcon(new ImageIcon("src/iconSource/lost.jpg"));
+		smiley.setPressedIcon(new ImageIcon("src/iconSource/lost.jpg"));
 	}
 	
 	public static void setWonFace() {

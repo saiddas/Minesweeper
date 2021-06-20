@@ -85,7 +85,7 @@ class ButtonHandler extends MouseAdapter  {
 		//HERE IS FOR WHEN THE MENU --> HELP IS CLICKED
 		else if (clickSource == 5 || clickSource == 6) {
 			if (clickSource == 5) {
-				JOptionPane.showMessageDialog(null, "Click a cell to open it. A cells number show how many mines are nearby."
+				JOptionPane.showMessageDialog(null, "Click a cell to open it. A cell's number show how many mines are nearby."
 																		+ "\nIf you click on a mined cell you'll die. Otherwise you will open other cell(s)"
 																		+ "\nFlag the cells you think are mines. If you manage to flag all mines you will win."
 																		+ "\nBe careful not to flag a normal cell, if there is more flag than mines you will not win.");
