@@ -2,6 +2,7 @@ package mineSweeperGame;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.lang.annotation.AnnotationTypeMismatchException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,6 +14,7 @@ class ButtonHandler extends MouseAdapter  {
 	private static int firstMineX , firstMineY;
 	private static boolean firstMine = true;
 	private static boolean won = false;
+	private static boolean lost = false;
 	private MineSweeperGUI panel;
 	private int clickSource;
 	// If click's source is a normal cell clickSource will remain 0
@@ -35,28 +37,34 @@ class ButtonHandler extends MouseAdapter  {
 	public void mousePressed(MouseEvent event) {
 		if (clickSource == 0) {
 			if (event.getButton() == MouseEvent.BUTTON1)  {
+				if (!grid.isFlagged(row, col) && !grid.isOpened(row, col)) {
+					TopPanel.setClickHoldFace();	//Making the confused face
+				}
+				
 				if(grid.isMINE(row, col)) {
-					openMines();
+					openMines();		//Opening a mine cell.
 				}
 				else {
 					if (event.getSource() instanceof JButton) {
 						if (grid.getCellContent(row, col) == 0) {
-							openZeroes(row, col);
+							openZeroes(row, col); //Opening a zero cell.
 						}
 						else {
-							openButton();
+							openButton(); //Opening a normal cell.
 						}
 					}
 				}
 			}
 			else if (event.getButton() == MouseEvent.BUTTON3) {
-				flagButton();
+				flagButton(); //Flagging a cell.
 			} 
 		} 
 		
 		//HERE IS FOR WHEN THE SMILEY IS CLICKED
 		else if (clickSource == 1) {
-			int newGameMines = grid.getMineCount();
+			if (event.getButton() == MouseEvent.BUTTON1) {
+				int newGameMines = grid.getMineCount();
+			}
 //			newGame(newGameMines);
 		}
 	
@@ -90,9 +98,16 @@ class ButtonHandler extends MouseAdapter  {
 			System.out.println("ERROR YOU SHOULD NOT HAVE SEEN THIS LINE!");
 		}
 	}
+	
+	@Override
+	public void mouseReleased(MouseEvent event) {
+		if (!grid.isFlagged(row, col) && grid.isOpened(row, col) && !grid.isMINE(row, col) && !won && !lost) {
+			TopPanel.setHappyFace();
+		}
+	}
 
 	private void flagButton() {
-		if (!grid.isOpened(row, col)) {
+		if (!grid.isOpened(row, col) && !lost) {
 			if (!grid.isFlagged(row, col)) {
 				panel.getButtons()[row][col].setIcon(panel.getIconAt(10));
 				grid.flagCell(row, col);
@@ -108,6 +123,7 @@ class ButtonHandler extends MouseAdapter  {
 
 	private void checkWinStatus() {
 		if (grid.getTrueFlaggedCellCount() == grid.getMineCount() && grid.getTrueFlaggedCellCount() == grid.getFlaggedCellCount() && !won) {
+			TopPanel.setWonFace();
 			JOptionPane.showMessageDialog(null, "You're a genius.");
 			won = true;
 			openAll();
@@ -146,7 +162,9 @@ class ButtonHandler extends MouseAdapter  {
 		if (firstMine) {
 			openFirstMine();
 		}
+		TopPanel.setLostFace();
 		openAll();
+		lost = true;
 	}
 
 	private void openFirstMine() {
