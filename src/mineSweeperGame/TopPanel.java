@@ -24,12 +24,12 @@ public class TopPanel extends JPanel {
 		//Chronometer Setup
 		chronometer = new Chronometer();
 		add(chronometer);
-		chronometer.setBounds(10, 10, 75, 40);
+		chronometer.setBounds(10, 10, 63, 40);
 		
 		//MineCounter Setup
 		mineCounter = new MineCounter();
 		add(mineCounter);
-		mineCounter.setBounds(515, 10, 75, 40);
+		mineCounter.setBounds(525, 10, 63, 40);
 		
 	}
 	

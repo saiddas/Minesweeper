@@ -9,7 +9,7 @@ import javax.swing.border.BevelBorder;
 
 public class MineSweeper {
 	private static final int NUM_MINES_EASY = 20;		//Easy game mine number
-	private static final int NUM_MINES = 50;				//Normal game mine number
+	private static final int NUM_MINES = 2;				//Normal game mine number
 	private static final int NUM_MINES_HARD = 100;	//Hard game mine number
 	private static final int SIZE = 20;
 	public static JFrame frame;

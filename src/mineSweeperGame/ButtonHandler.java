@@ -13,8 +13,8 @@ class ButtonHandler extends MouseAdapter  {
 	private MineGrid grid;
 	private static int firstMineX , firstMineY;
 	private static boolean firstMine = true;
-	private static boolean won = false;
-	private static boolean lost = false;
+	static boolean won = false;
+	static boolean lost = false;
 	private MineSweeperGUI panel;
 	private int clickSource;
 	// If click's source is a normal cell clickSource will remain 0
@@ -128,8 +128,8 @@ class ButtonHandler extends MouseAdapter  {
 	private void checkWinStatus() {
 		if (grid.getTrueFlaggedCellCount() == grid.getMineCount() && grid.getTrueFlaggedCellCount() == grid.getFlaggedCellCount() && !won && !lost) {
 			TopPanel.setWonFace();
-			JOptionPane.showMessageDialog(null, "You're a genius.");
 			won = true;
+			JOptionPane.showMessageDialog(null, "You're a genius.");
 			openAll();
 		}
 	}

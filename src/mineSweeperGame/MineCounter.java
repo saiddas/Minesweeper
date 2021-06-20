@@ -7,23 +7,35 @@ import java.awt.GraphicsEnvironment;
 import java.io.File;
 import java.io.IOException;
 
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class MineCounter extends JTextField{
+public class MineCounter extends JLabel {
 	private Font font;
+	private JTextField textField;
 	
 	public MineCounter() {
 		try {	
-            font = Font.createFont(Font.TRUETYPE_FONT,  new File("src/iconSource/digitalDismay.otf")).deriveFont(65f);
+            font = Font.createFont(Font.TRUETYPE_FONT,  new File("src/iconSource/digitalDismay.otf")).deriveFont(45f);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/iconSource/digitalDismay.otf")));
         } catch (IOException | FontFormatException e) {
         	System.out.println("An exception happened! (ChronometerClass)");
         }
 		
+		setLayout(null);
 		setSize(75, 40);
-		setFont(font);
 		setBackground(Color.BLACK);
-		setForeground(Color.WHITE);
+		setOpaque(true);
+		
+		textField = new JTextField("000");
+		textField.setFocusable(false);
+		textField.setOpaque(false);
+		textField.setFont(font);
+		textField.setForeground(Color.RED);
+		textField.setBorder(null);
+
+		add(textField);
+		textField.setBounds(2, 4, 75, 40);
 	}
 }

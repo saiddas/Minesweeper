@@ -9,38 +9,50 @@ import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class Chronometer extends JTextField{
+public class Chronometer extends JLabel {
 	private Font font;
 	private int second;
+	private JTextField textField;
 	
 	public Chronometer() {
 		try {	//I have taken some of these lines from internet, but modified most of them.
-            font = Font.createFont(Font.TRUETYPE_FONT,  new File("src/iconSource/digitalDismay.otf")).deriveFont(65f);
+            font = Font.createFont(Font.TRUETYPE_FONT,  new File("src/iconSource/digitalDismay.otf")).deriveFont(45f);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/iconSource/digitalDismay.otf")));
         } catch (IOException | FontFormatException e) {
         	System.out.println("An exception happened! (ChronometerClass)");
         }
 		
+		setLayout(null);
 		setSize(75, 40);
-		setFont(font);
 		setBackground(Color.BLACK);
-		setForeground(Color.WHITE);
+		setOpaque(true);
 		
+		textField =  new JTextField("000");
+		textField.setFocusable(false);
+		textField.setOpaque(false);
+		textField.setFont(font);
+		textField.setForeground(Color.RED);
+		textField.setBorder(null);
+		
+		add(textField);	
+		textField.setBounds(2, 4, 75, 40);
 		
 		Timer timer = new Timer();	
 		TimerTask timerTask = new TimerTask() {
 			
 			@Override
-			public void run() {
-				second++;
-//				rightLabel.setText(String.format("%03d",secondsPassed));    //format is used for making this 000 before that i used string.value
+			public void run() { // I took this part from internet too
+				if (!ButtonHandler.lost && !ButtonHandler.won) {	
+					second++;
+					textField.setText(String.format("%03d", second));
+				}
 			}
 		};
 		
 		timer.scheduleAtFixedRate(timerTask, 1000, 1000);
-
 	}
 }
