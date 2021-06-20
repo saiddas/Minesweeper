@@ -37,7 +37,7 @@ class ButtonHandler extends MouseAdapter  {
 	public void mousePressed(MouseEvent event) {
 		if (clickSource == 0) {
 			if (event.getButton() == MouseEvent.BUTTON1)  {
-				if (!grid.isFlagged(row, col) && !grid.isOpened(row, col)) {
+				if (!grid.isFlagged(row, col) && !grid.isOpened(row, col) && !won && !lost) {
 					TopPanel.setClickHoldFace();	//Making the confused face
 				}
 				
@@ -107,7 +107,7 @@ class ButtonHandler extends MouseAdapter  {
 	}
 
 	private void flagButton() {
-		if (!grid.isOpened(row, col) && !lost) {
+		if (!grid.isOpened(row, col) && !lost && !won) {
 			if (!grid.isFlagged(row, col)) {
 				panel.getButtons()[row][col].setIcon(panel.getIconAt(10));
 				grid.flagCell(row, col);
@@ -145,14 +145,14 @@ class ButtonHandler extends MouseAdapter  {
 	}
 
 	private void openButton() {
-		if (!grid.isOpened(row, col) && !grid.isFlagged(row, col)) {
+		if (!grid.isOpened(row, col) && !grid.isFlagged(row, col) && !won && !lost) {
 			panel.getButtons()[row][col].setIcon(panel.getIconAt(grid.getCellContent(row, col)));
 			grid.openCell(row, col);
 		}
 	}
 	
 	private void openButton(int r, int c) {
-		if (!grid.isOpened(r, c) && !grid.isFlagged(r, c)) {
+		if (!grid.isOpened(r, c) && !grid.isFlagged(r, c) && !won && !lost) {
 			panel.getButtons()[r][c].setIcon(panel.getIconAt(grid.getCellContent(r, c)));
 			grid.openCell(r, c);
 		}
