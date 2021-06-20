@@ -65,7 +65,15 @@ class ButtonHandler extends MouseAdapter  {
 		}
 		//HERE IS FOR WHEN THE MENU --> HELP IS CLICKED
 		else if (clickSource == 5 || clickSource == 6) {
-			
+			if (clickSource == 5) {
+				JOptionPane.showMessageDialog(null, "Click a cell to open it. A cells number show how many mines are nearby."
+																		+ "\nIf you click on a mined cell you'll die. Otherwise you will open other cell(s)"
+																		+ "\nFlag the cells you think are mines. If you manage to flag all mines you will win."
+																		+ "\nBe careful not to flag a normal cell, if there is more flag than mines you will not win.");
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "How can I tell about my code in this limited notification pop-up? \n;)\nA joke by Ahmet Said Daş");
+			}
 		}
 		else {
 			System.out.println("ERROR YOU SHOULD NOT HAVE SEEN THIS LINE!");
@@ -128,29 +136,6 @@ class ButtonHandler extends MouseAdapter  {
 			openFirstMine();
 		}
 		openAll();
-//		for (int i = 0; i < grid.getMineInformation().length; i++) {
-//			for (int j = 0; j < grid.getMineInformation()[0].length; j++) {
-//				panel.getButtons()[i][j].setEnabled(false);
-//				if (grid.isMINE(i, j) && !( i==firstMineX  && j==firstMineY  )) {
-//					panel.getButtons()[i][j].setDisabledIcon(new ImageIcon("src/iconSource/otherMine.jpg"));
-//				}
-//				else if ( i==firstMineX && j == firstMineY ) {
-//					panel.getButtons()[i][j].setDisabledIcon(new ImageIcon("src/iconSource/thatMine.jpg"));
-//				}
-//				else if (grid.isOpened(i, j)) {
-//					panel.getButtons()[i][j].setDisabledIcon(panel.getIconAt(grid.getCellContent(i, j)-grid.OPENED));
-//				}
-//				else if (grid.isFlagged(i, j) && grid.isTrueFlagged(i, j)) {
-//					panel.getButtons()[i][j].setDisabledIcon(panel.getIconAt(10));
-//				}
-//				else if (grid.isFlagged(i, j) && !grid.isTrueFlagged(i, j)) {
-//					panel.getButtons()[i][j].setDisabledIcon(panel.getIconAt(13));
-//				}
-//				else {
-//					panel.getButtons()[i][j].setDisabledIcon(panel.getIconAt(9));
-//				}
-//			}
-//		}
 	}
 
 	private void openFirstMine() {
