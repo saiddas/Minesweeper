@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 
 public class MineSweeper {
-	private static final int NUM_MINES = 20;
+	private static final int NUM_MINES = 2;
 	private static final int SIZE = 20;
 	public static JFrame frame;
 	

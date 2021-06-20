@@ -10,10 +10,11 @@ import javax.swing.JOptionPane;
 class ButtonHandler extends MouseAdapter  {
 	private int row, col;
 	private MineGrid grid;
-	private int clickSource;
 	private static int firstMineX , firstMineY;
 	private static boolean firstMine = true;
+	private static boolean won = false;
 	private MineSweeperGUI panel;
+	private int clickSource;
 	// If click's source is a normal cell clickSource will remain 0
 	// for smiley it's 1, for 'new easy game' it's 2, for 'new normal game' it's 3, for 'new hard game' it's 4, for 'game help' it's 5, for 'code help' it's 6.
 	
@@ -81,13 +82,16 @@ class ButtonHandler extends MouseAdapter  {
 			else {
 				panel.getButtons()[row][col].setIcon(panel.getIconAt(9));
 				grid.unflagCell(row, col);
+				checkWinStatus();
 			}
 		}
 	}
 
 	private void checkWinStatus() {
-		if (grid.getTrueFlaggedCellCount() == grid.getMineCount()) {
+		if (grid.getTrueFlaggedCellCount() == grid.getMineCount() && grid.getTrueFlaggedCellCount() == grid.getFlaggedCellCount() && !won) {
 			JOptionPane.showMessageDialog(null, "You're a genius.");
+			won = true;
+			openAll();
 		}
 	}
 
@@ -123,14 +127,46 @@ class ButtonHandler extends MouseAdapter  {
 		if (firstMine) {
 			openFirstMine();
 		}
-		
+		openAll();
+//		for (int i = 0; i < grid.getMineInformation().length; i++) {
+//			for (int j = 0; j < grid.getMineInformation()[0].length; j++) {
+//				panel.getButtons()[i][j].setEnabled(false);
+//				if (grid.isMINE(i, j) && !( i==firstMineX  && j==firstMineY  )) {
+//					panel.getButtons()[i][j].setDisabledIcon(new ImageIcon("src/iconSource/otherMine.jpg"));
+//				}
+//				else if ( i==firstMineX && j == firstMineY ) {
+//					panel.getButtons()[i][j].setDisabledIcon(new ImageIcon("src/iconSource/thatMine.jpg"));
+//				}
+//				else if (grid.isOpened(i, j)) {
+//					panel.getButtons()[i][j].setDisabledIcon(panel.getIconAt(grid.getCellContent(i, j)-grid.OPENED));
+//				}
+//				else if (grid.isFlagged(i, j) && grid.isTrueFlagged(i, j)) {
+//					panel.getButtons()[i][j].setDisabledIcon(panel.getIconAt(10));
+//				}
+//				else if (grid.isFlagged(i, j) && !grid.isTrueFlagged(i, j)) {
+//					panel.getButtons()[i][j].setDisabledIcon(panel.getIconAt(13));
+//				}
+//				else {
+//					panel.getButtons()[i][j].setDisabledIcon(panel.getIconAt(9));
+//				}
+//			}
+//		}
+	}
+
+	private void openFirstMine() {
+		firstMineX = row;
+		firstMineY = col;
+		firstMine = false;
+	}
+
+	private void openAll() {
 		for (int i = 0; i < grid.getMineInformation().length; i++) {
 			for (int j = 0; j < grid.getMineInformation()[0].length; j++) {
 				panel.getButtons()[i][j].setEnabled(false);
-				if (grid.isMINE(i, j) && !( i==firstMineX  && j==firstMineY  )) {
+				if (grid.isMINE(i, j) && !( i==firstMineX  && j==firstMineY  ) && !won) {
 					panel.getButtons()[i][j].setDisabledIcon(new ImageIcon("src/iconSource/otherMine.jpg"));
 				}
-				else if ( i==firstMineX && j == firstMineY ) {
+				else if ( i==firstMineX && j == firstMineY  && !won ) {
 					panel.getButtons()[i][j].setDisabledIcon(new ImageIcon("src/iconSource/thatMine.jpg"));
 				}
 				else if (grid.isOpened(i, j)) {
@@ -139,19 +175,15 @@ class ButtonHandler extends MouseAdapter  {
 				else if (grid.isFlagged(i, j) && grid.isTrueFlagged(i, j)) {
 					panel.getButtons()[i][j].setDisabledIcon(panel.getIconAt(10));
 				}
-				else if (grid.isFlagged(i, j) && !grid.isTrueFlagged(i, j)) {
+				else if (grid.isFlagged(i, j) && !grid.isTrueFlagged(i, j) && !won) {
 					panel.getButtons()[i][j].setDisabledIcon(panel.getIconAt(13));
 				}
 				else {
-					panel.getButtons()[i][j].setDisabledIcon(panel.getIconAt(9));
+					if(!won) {
+						panel.getButtons()[i][j].setDisabledIcon(panel.getIconAt(9));
+					}
 				}
-			}
+			}	
 		}
-	}
-
-	private void openFirstMine() {
-		firstMineX = row;
-		firstMineY = col;
-		firstMine = false;
 	}
 }
