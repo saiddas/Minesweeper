@@ -122,7 +122,7 @@ class ButtonHandler extends MouseAdapter  {
 	}
 
 	private void checkWinStatus() {
-		if (grid.getTrueFlaggedCellCount() == grid.getMineCount() && grid.getTrueFlaggedCellCount() == grid.getFlaggedCellCount() && !won) {
+		if (grid.getTrueFlaggedCellCount() == grid.getMineCount() && grid.getTrueFlaggedCellCount() == grid.getFlaggedCellCount() && !won && !lost) {
 			TopPanel.setWonFace();
 			JOptionPane.showMessageDialog(null, "You're a genius.");
 			won = true;
@@ -131,14 +131,16 @@ class ButtonHandler extends MouseAdapter  {
 	}
 
 	private void openZeroes(int r, int c) {
-		openButton(r, c);
-		for (int i = -1; i < 2; i++) {
-			for (int j = -1; j < 2; j++) {
-				if (!(i == 0 && j == 0) && grid.isInsideGrid(r+i, c+j)) {
-					if (grid.getCellContent(r+i, c+j) == 0) {
-						openZeroes(r+i, c+j);
+		if (!won && !lost) {
+			openButton(r, c);
+			for (int i = -1; i < 2; i++) {
+				for (int j = -1; j < 2; j++) {
+					if (!(i == 0 && j == 0) && grid.isInsideGrid(r+i, c+j)) {
+						if (grid.getCellContent(r+i, c+j) == 0) {
+							openZeroes(r+i, c+j);
+						}
+						openButton(r+i, c+j);
 					}
-					openButton(r+i, c+j);
 				}
 			}
 		}
