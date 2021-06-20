@@ -46,7 +46,7 @@ public class Chronometer extends JLabel {
 			
 			@Override
 			public void run() { // I took this part from internet too
-				if (!ButtonHandler.lost && !ButtonHandler.won) {	
+				if (!ButtonHandler.lost && !ButtonHandler.won && !(second>998)) {	
 					second++;
 					textField.setText(String.format("%03d", second));
 				}
