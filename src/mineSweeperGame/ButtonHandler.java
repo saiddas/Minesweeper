@@ -2,7 +2,6 @@ package mineSweeperGame;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.lang.annotation.AnnotationTypeMismatchException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;

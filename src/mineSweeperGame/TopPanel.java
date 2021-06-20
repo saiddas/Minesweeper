@@ -3,7 +3,6 @@ package mineSweeperGame;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.border.BevelBorder;
 
 public class TopPanel extends JPanel {
 	private Chronometer chronometer;
