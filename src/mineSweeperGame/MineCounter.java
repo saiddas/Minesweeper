@@ -28,7 +28,8 @@ public class MineCounter extends JLabel {
 		setBackground(Color.BLACK);
 		setOpaque(true);
 		
-		textField = new JTextField("000");
+		String substr = String.format("%3d", 1000+MineSweeper.getNUM_MINES()).substring(1, 4);
+		textField = new JTextField(substr);
 		textField.setFocusable(false);
 		textField.setOpaque(false);
 		textField.setFont(font);
