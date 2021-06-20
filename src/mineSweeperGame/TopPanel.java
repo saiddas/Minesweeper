@@ -21,6 +21,16 @@ public class TopPanel extends JPanel {
 		smiley.setBounds(260, 10, 40, 40);
 		smiley.addMouseListener(new ButtonHandler(1));
 		
+		//Chronometer Setup
+		chronometer = new Chronometer();
+		add(chronometer);
+		chronometer.setBounds(10, 10, 75, 40);
+		
+		//MineCounter Setup
+		mineCounter = new MineCounter();
+		add(mineCounter);
+		mineCounter.setBounds(515, 10, 75, 40);
+		
 	}
 	
 	public static void setLostFace() {

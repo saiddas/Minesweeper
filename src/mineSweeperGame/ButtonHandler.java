@@ -63,24 +63,24 @@ class ButtonHandler extends MouseAdapter  {
 		//HERE IS FOR WHEN THE SMILEY IS CLICKED
 		else if (clickSource == 1) {
 			if (event.getButton() == MouseEvent.BUTTON1) {
-				int newGameMines = grid.getMineCount();
+				int newGameMines = MineSweeper.getNUM_MINES();
+				newGame(newGameMines);
 			}
-//			newGame(newGameMines);
 		}
 	
 		//HERE IS FOR WHEN THE MENU --> NEW GAME  IS CLICKED
 		else if (clickSource > 1 && clickSource < 5) {
 			int newGameMines;
 			if (clickSource == 2) {
-				newGameMines = 20;
+				newGameMines = MineSweeper.getNUM_MINES_EASY();
 			}
 			else if (clickSource == 3) {
-				newGameMines =50; 
+				newGameMines = MineSweeper.getNUM_MINES(); 
 			}
 			else {
-				newGameMines = 100;
+				newGameMines = MineSweeper.getNUM_MINES_HARD();
 			}
-//			newGame(newGameMines);
+			newGame(newGameMines);
 		}
 		//HERE IS FOR WHEN THE MENU --> HELP IS CLICKED
 		else if (clickSource == 5 || clickSource == 6) {
@@ -99,6 +99,10 @@ class ButtonHandler extends MouseAdapter  {
 		}
 	}
 	
+	private void newGame(int newGameMines) {
+		System.out.println("NewGame has been created"); //I'll do this part later. Just now I'm trying.
+	}
+
 	@Override
 	public void mouseReleased(MouseEvent event) {
 		if (!grid.isFlagged(row, col) && grid.isOpened(row, col) && !grid.isMINE(row, col) && !won && !lost) {
