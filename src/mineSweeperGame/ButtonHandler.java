@@ -105,8 +105,10 @@ class ButtonHandler extends MouseAdapter  {
 
 	@Override
 	public void mouseReleased(MouseEvent event) {
-		if (!grid.isFlagged(row, col) && grid.isOpened(row, col) && !grid.isMINE(row, col) && !won && !lost) {
-			TopPanel.setHappyFace();
+		if(clickSource == 0) {
+			if (!grid.isFlagged(row, col) && grid.isOpened(row, col) && !grid.isMINE(row, col) && !won && !lost) {
+				TopPanel.setHappyFace();
+			}
 		}
 	}
 
