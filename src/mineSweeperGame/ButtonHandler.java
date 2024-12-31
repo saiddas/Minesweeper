@@ -2,7 +2,6 @@ package mineSweeperGame;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -10,8 +9,8 @@ import javax.swing.JOptionPane;
 class ButtonHandler extends MouseAdapter  {
 	private int row, col;
 	private MineGrid grid;
-	private static int firstMineX , firstMineY;
-	private static boolean firstMine = true;
+	private int firstMineX , firstMineY;
+	private boolean firstMine = true;
 	static boolean won = false;
 	static boolean lost = false;
 	private MineSweeperGUI panel;
