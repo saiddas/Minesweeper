@@ -2,4 +2,4 @@
 # TERM PROJECT 2
 ###### by Ahmet Said Daş
 
-> Please refer to project02 branch.
+> You're in the right branch!
