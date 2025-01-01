@@ -1,7 +1,6 @@
 package mineSweeperGame;
 
 import java.awt.Color;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -32,12 +31,15 @@ public class MineSweeper {
 	public static void startGame(int i) {
 		if (i == 0 ) {
 			NUM_MINES = NUM_MINES_EASY;
+			frame.setTitle("Mine Sweeper | # of mines: " + NUM_MINES_EASY);
 		} 
 		else if (i == 1) {
 			NUM_MINES = NUM_MINES_NORMAL;
+			frame.setTitle("Mine Sweeper | # of mines: " + NUM_MINES_NORMAL);
 		}
 		else if (i == 2) {
 			NUM_MINES = NUM_MINES_HARD;
+			frame.setTitle("Mine Sweeper | # of mines: " + NUM_MINES_HARD);
 		}
 		else {
 			System.out.println("MineSweeper.java is broken!!");
