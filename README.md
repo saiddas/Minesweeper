@@ -4,7 +4,7 @@ Hi, I made this game as a term project in my very second term at the Object Orie
 
 So here it is, Minesweeper.java!
 
-**Note** You can directly run the game if you have java installed and don't a .If not, please first install Java. All you have to do after installing is to compile and run. You can do these by typing in the terminal:
+**Note** You can directly run the game from terminal if you have java installed and don't want to download an IDE. If you don't have java, kindly install it first. All you have to do after installing is to compile and run. You can do these by typing in the terminal:
 1. `javac -d bin src/mineSweeperGame/*.java`
 2. `java -cp bin mineSweeperGame.MineSweeper`
 
