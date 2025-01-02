@@ -39,30 +39,10 @@ class ButtonHandler extends MouseAdapter  {
 		if (clickSource == 0) {
 			if (event.getButton() == MouseEvent.BUTTON1)  {
 				if (!grid.isFlagged(row, col) && !grid.isOpened(row, col) && !won && !lost) {
-					TopPanel.setClickHoldFace();	//Making the confused face
-				}
-				
-				if(grid.isMINE(row, col)) {
-					openMines();		//Opening a mine cell.
-				}
-				else {
-					if (event.getSource() instanceof JButton) {
-						if (grid.getCellContent(row, col) == 0) {
-							openZeroes(row, col); //Opening a zero cell.
-						}
-						else {
-							openButton(); //Opening a normal cell.
-						}
-					}
+					TopPanel.setClickHoldFace();
 				}
 			}
-			else if (event.getButton() == MouseEvent.BUTTON3) {
-				flagButton(); //Flagging a cell.
-			}
-			else {
-				questionmarkButton();
-			}
-		} 
+		}
 		
 		//HERE IS FOR WHEN THE SMILEY IS CLICKED
 		else if (clickSource == 1) {
@@ -108,6 +88,33 @@ class ButtonHandler extends MouseAdapter  {
 		}
 	}
 	
+	@Override
+	public void mouseClicked(MouseEvent event) {
+		if (clickSource == 0) {
+			if (event.getButton() == MouseEvent.BUTTON1)  {
+				if(grid.isMINE(row, col)) {
+					openMines();		//Opening a mine cell.
+				}
+				else {
+					if (event.getSource() instanceof JButton) {
+						if (grid.getCellContent(row, col) == 0) {
+							openZeroes(row, col); //Opening a zero cell.
+						}
+						else {
+							openButton(); //Opening a normal cell.
+						}
+					}
+				}
+			}
+			else if (event.getButton() == MouseEvent.BUTTON3) {
+				flagButton(); //Flagging a cell.
+			}
+			else {
+				questionmarkButton();
+			}
+		} 
+	}
+	
 	private void questionmarkButton() {
 		if (!grid.isOpened(row, col) && !lost && !won) {
 			if (!grid.isFlagged(row, col)) {
@@ -136,7 +143,7 @@ class ButtonHandler extends MouseAdapter  {
 	@Override
 	public void mouseReleased(MouseEvent event) {
 		if(clickSource == 0) {
-			if (!grid.isFlagged(row, col) && grid.isOpened(row, col) && !grid.isMINE(row, col) && !won && !lost) {
+			if (!won && !lost) {
 				TopPanel.setHappyFace();
 			}
 		}
@@ -146,11 +153,14 @@ class ButtonHandler extends MouseAdapter  {
 		if (!grid.isOpened(row, col) && !lost && !won) {
 			if (!grid.isFlagged(row, col)) {
 				panel.getButtons()[row][col].setIcon(panel.getIconAt(10));
+				panel.getButtons()[row][col].setPressedIcon(panel.getIconAt(10));
+
 				grid.flagCell(row, col);
 				checkWinStatus();
 			}
 			else {
 				panel.getButtons()[row][col].setIcon(panel.getIconAt(9));
+				panel.getButtons()[row][col].setPressedIcon(panel.getIconAt(9));
 				grid.unflagCell(row, col);
 				checkWinStatus();
 			}
