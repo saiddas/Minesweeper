@@ -8,4 +8,4 @@ So here it is, Minesweeper.java!
 1. `javac -d bin src/mineSweeperGame/*.java`
 2. `java -cp bin mineSweeperGame.MineSweeper`
 
-Don't forget to get into the Minesweeper folder ;)
+Don't forget to get into the Minesweeper folder before typing these ;)
