@@ -7,10 +7,10 @@ import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 
 public class MineSweeper {
-	private static int NUM_MINES;													//Selected Game's mines
-	private static final int NUM_MINES_EASY = 20;							//Easy game mine number
-	private static final int NUM_MINES_NORMAL = 50;					//Normal game mine number
-	private static final int NUM_MINES_HARD = 100;						//Hard game mine number
+	private static int NUM_MINES;							//Selected Game's mines
+	private static final int NUM_MINES_EASY = 30;			//Easy game mine number
+	private static final int NUM_MINES_NORMAL = 50;			//Normal game mine number
+	private static final int NUM_MINES_HARD = 80;			//Hard game mine number
 	private static final int SIZE = 20;
 	public static JFrame frame;
 	private static JPanel oldBackgroundPanel = null;
