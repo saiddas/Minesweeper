@@ -18,7 +18,7 @@ public class MenuGUI extends JMenuBar{
 		JMenuItem hard = new JMenuItem("New Hard Game");
 		
 		JMenuItem gameHelp = new JMenuItem("Game Help");
-		JMenuItem codeHelp = new JMenuItem("Source Code Help");
+		JMenuItem codeHelp = new JMenuItem("Source Code");
 		
 		game.add(easy);
 		game.add(normal);

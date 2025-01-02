@@ -1,10 +1,13 @@
 package mineSweeperGame;
 
+import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 class ButtonHandler extends MouseAdapter  {
 	private int row, col;
@@ -88,11 +91,16 @@ class ButtonHandler extends MouseAdapter  {
 			if (clickSource == 5) {
 				JOptionPane.showMessageDialog(null, "Click a cell to open it. A cell's number show how many mines are nearby."
 																		+ "\nIf you click on a mined cell you'll die. Otherwise you will open other cell(s)"
-																		+ "\nFlag the cells you think are mines. If you manage to flag all mines you will win."
+																		+ "\nFlag the cells you think are mines. You can flag by right clicking on a cell."
+																		+ "\nIf you manage to flag all mines or open all non-mine cells you will win."
+																		+ "\nIf you are unsure to flag a mine, you can question-marl that cell by middle clicking."
 																		+ "\nBe careful not to flag a normal cell, if there is more flag than mines you will not win.");
 			}
 			else {
-				JOptionPane.showMessageDialog(null, "How can I tell about my code in this limited notification pop-up? \n;)\nA joke by Ahmet Said Daş");
+				JTextArea jtext = new JTextArea("Find the code of this game at:\ngithub.com/saiddas/Minesweeper");
+				jtext.setEditable(false);
+				jtext.setBackground(null);
+				JOptionPane.showMessageDialog(null, jtext,"Source Code", JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
 		else {
