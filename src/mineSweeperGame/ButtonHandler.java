@@ -55,7 +55,10 @@ class ButtonHandler extends MouseAdapter  {
 			}
 			else if (event.getButton() == MouseEvent.BUTTON3) {
 				flagButton(); //Flagging a cell.
-			} 
+			}
+			else {
+				questionmarkButton();
+			}
 		} 
 		
 		//HERE IS FOR WHEN THE SMILEY IS CLICKED
@@ -97,6 +100,25 @@ class ButtonHandler extends MouseAdapter  {
 		}
 	}
 	
+	private void questionmarkButton() {
+		if (!grid.isOpened(row, col) && !lost && !won) {
+			if (!grid.isFlagged(row, col)) {
+				panel.getButtons()[row][col].setIcon(panel.getIconAt(14));
+				panel.getButtons()[row][col].setPressedIcon(panel.getIconAt(15));
+				grid.flagCell(row, col);
+				checkWinStatus();
+			}
+			else {
+				panel.getButtons()[row][col].setIcon(panel.getIconAt(9));
+				panel.getButtons()[row][col].setPressedIcon(panel.getIconAt(9));
+				grid.unflagCell(row, col);
+				checkWinStatus();
+			}
+		}
+
+		
+	}
+
 	private void newGame(int difficulty) {
 		lost = false;
 		won = false;
