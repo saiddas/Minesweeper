@@ -12,9 +12,11 @@ class MineSweeperGUI extends JPanel {
 	private MineGrid grid;
 	private JButton[][] buttons;
 	final Icon[] ICONS = new ImageIcon[16];
+	private static boolean firstClick = true;
+
 	
 	public MineSweeperGUI(int numRows, int numCols, int numMines) {
-		
+		setFirstClick(true);
 		grid = new MineGrid(numRows, numCols, numMines);
 		buttons = new JButton[numRows][numCols];
 		setICONS();
@@ -44,6 +46,14 @@ class MineSweeperGUI extends JPanel {
 	
 	Icon[] getICONS() {
 		return ICONS;
+	}
+	
+	static boolean getFirstClick() {
+		return firstClick;
+	}
+	
+	static void setFirstClick(boolean value) {
+		firstClick = value;
 	}
 	
 	private void setICONS() {

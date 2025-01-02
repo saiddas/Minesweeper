@@ -14,8 +14,6 @@ class MineGrid {
 	public MineGrid(int numRows, int numCols, int numMines) {
 		mineInformation = new int[numRows][numCols];
 		initializeCells();
-		placeMines(numMines);
-		setMineInformation();
 		mineCount = numMines;
 	}
 	
@@ -23,7 +21,7 @@ class MineGrid {
 		return (i >= 0 && i < mineInformation.length) && (j >= 0 && j < mineInformation[0].length);
 	}
 	
-	private void setMineInformation() {
+	void setMineInformation() {
 		for (int i = 0; i < mineInformation.length; i++) {
 			for (int j = 0; j < mineInformation[0].length; j++) {
 				if (mineInformation[i][j] == MINE) {
@@ -55,12 +53,12 @@ class MineGrid {
 		return mineInformation[i][j] == MINE;
 	}
 
-	private void placeMines(int numMines) {
+	void placeMines(int numMines, int row, int col) {
 		Random random = new Random();
 		for (int i = 0; i < numMines; i++) {
 			int r = random.nextInt(mineInformation.length);
 			int c = random.nextInt(mineInformation[0].length);
-			if (mineInformation[r][c] != MINE) {
+			if (mineInformation[r][c] != MINE && !(r==row && c==col)) {
 				mineInformation[r][c] = MINE;
 			}
 			else {

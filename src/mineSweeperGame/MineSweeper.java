@@ -29,7 +29,7 @@ public class MineSweeper {
 	}
 	
 	public static void startGame(int i) {
-		if (i == 0 ) {
+		if (i == 0) {
 			NUM_MINES = NUM_MINES_EASY;//8 8 10 //16 16 40 //16 31 99
 			frame.setTitle("Mine Sweeper | # of mines: " + NUM_MINES_EASY);
 		} 

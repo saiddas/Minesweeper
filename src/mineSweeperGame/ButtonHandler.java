@@ -92,16 +92,24 @@ class ButtonHandler extends MouseAdapter  {
 	public void mouseClicked(MouseEvent event) {
 		if (clickSource == 0) {
 			if (event.getButton() == MouseEvent.BUTTON1)  {
-				if(grid.isMINE(row, col)) {
-					openMines();		//Opening a mine cell.
-				}
-				else {
-					if (event.getSource() instanceof JButton) {
-						if (grid.getCellContent(row, col) == 0) {
-							openZeroes(row, col); //Opening a zero cell.
-						}
-						else {
-							openButton(); //Opening a normal cell.
+				
+				if (MineSweeperGUI.getFirstClick()) {
+					grid.placeMines(grid.getMineCount(), row, col);
+					grid.setMineInformation();
+					MineSweeperGUI.setFirstClick(false);
+				
+				} else {
+					if(grid.isMINE(row, col)) {
+						openMines();		//Opening a mine cell.
+					}
+					else {
+						if (event.getSource() instanceof JButton) {
+							if (grid.getCellContent(row, col) == 0) {
+								openZeroes(row, col); //Opening a zero cell.
+							}
+							else {
+								openButton(); //Opening a normal cell.
+							}
 						}
 					}
 				}
@@ -129,9 +137,7 @@ class ButtonHandler extends MouseAdapter  {
 				grid.unflagCell(row, col);
 				checkWinStatus();
 			}
-		}
-
-		
+		}	
 	}
 
 	private void newGame(int difficulty) {
@@ -196,6 +202,7 @@ class ButtonHandler extends MouseAdapter  {
 		if (!grid.isOpened(row, col) && !grid.isFlagged(row, col) && !won && !lost) {
 			panel.getButtons()[row][col].setIcon(panel.getIconAt(grid.getCellContent(row, col)));
 			grid.openCell(row, col);
+			checkWinStatus();
 		}
 	}
 	
@@ -203,6 +210,7 @@ class ButtonHandler extends MouseAdapter  {
 		if (!grid.isOpened(r, c) && !grid.isFlagged(r, c) && !won && !lost) {
 			panel.getButtons()[r][c].setIcon(panel.getIconAt(grid.getCellContent(r, c)));
 			grid.openCell(r, c);
+			checkWinStatus();
 		}
 	}
 
